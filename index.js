@@ -32,40 +32,26 @@ app.post("/functions/extractUrls", (req, res) => {
   });
 });
 
-app.get("/functions/extractUrls", (req, res) => {
-  res.json({
-    name: "extractUrls",
+app.get("/functions/extractUrls", (req,res)=>{
+    res.json({
+        name: "extractUrls",
+        description: "Extract all unique HTTP and HTTPS URLs from text.",
 
-    description: "Extract all unique HTTP and HTTPS URLs from text.",
-
-    input: {
-      type: "string",
-      description: "Text containing one or more URLs.",
-      example: "Visit https://openai.com and https://github.com.",
-    },
-
-    output: {
-      type: "object",
-      description: "Information about extracted URLs.",
-
-      properties: {
-        count: {
-          type: "number",
-          description: "Number of unique URLs.",
-          example: 2,
-        },
-
-        urls: {
-          type: "array",
-          description: "Unique URLs extracted from the text.",
-          items: {
+        input: {
             type: "string",
-          },
-          example: ["https://openai.com", "https://github.com"],
+            description: "Text containing URLs to extract.",
+            example: "Visit https://example.com and https://github.com"
         },
-      },
-    },
-  });
+
+        output: {
+            type: "array",
+            description: "List of extracted URLs.",
+            example: [
+                "https://example.com",
+                "https://github.com"
+            ]
+        }
+    });
 });
 
 const PORT = process.env.PORT || 3000;
